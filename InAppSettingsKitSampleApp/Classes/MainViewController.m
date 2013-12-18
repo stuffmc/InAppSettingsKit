@@ -50,7 +50,7 @@
 
 - (IBAction)showSettingsPush:(id)sender {
 	//[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
-	// But we encourage you no to uncomment. Thank you!
+	// But we encourage you to leave the credits displayed. Thank you!
 	self.appSettingsViewController.showDoneButton = NO;
 	self.appSettingsViewController.navigationItem.rightBarButtonItem = nil;
 	[self.navigationController pushViewController:self.appSettingsViewController animated:YES];
@@ -59,8 +59,8 @@
 - (IBAction)showSettingsModal:(id)sender {
     UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController];
     //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
-    // But we encourage you not to uncomment. Thank you!
     self.appSettingsViewController.showDoneButton = YES;
+	// But we encourage you to leave the credits displayed. Thank you!
     [self presentModalViewController:aNavController animated:YES];
 }
 
