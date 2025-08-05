@@ -9,16 +9,23 @@
 /* Begin PBXBuildFile section */
 		0C684A942E42449200150868 /* InAppSettingsKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C684A932E42449200150868 /* InAppSettingsKitSwift */; };
 		0C8778D52E421A4A00BB9E68 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8778D32E421A4A00BB9E68 /* App.swift */; };
-		0CF01A302E422AE100763DF7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CF01A2E2E4228E200763DF7 /* Settings.bundle */; };
 		0CF01A322E422BED00763DF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF01A312E422BED00763DF7 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C8778D32E421A4A00BB9E68 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0C8778D72E421AFE00BB9E68 /* IASKSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IASKSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CF01A2E2E4228E200763DF7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../InAppSettingsKitSampleApp/Settings.bundle; sourceTree = SOURCE_ROOT; };
 		0CF01A312E422BED00763DF7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../InAppSettingsKitSampleApp/Images.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		0C684AA92E4251E300150868 /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			name = Assets;
+			path = ../InAppSettingsKitSampleApp/Assets;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0C8778C02E42197D00BB9E68 /* Frameworks */ = {
@@ -36,7 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				0CF01A312E422BED00763DF7 /* Images.xcassets */,
-				0CF01A2E2E4228E200763DF7 /* Settings.bundle */,
+				0C684AA92E4251E300150868 /* Assets */,
 				0C8778D32E421A4A00BB9E68 /* App.swift */,
 				0C8778D72E421AFE00BB9E68 /* IASKSwiftUI.app */,
 				0CF01A2B2E4227C100763DF7 /* Frameworks */,
@@ -64,6 +71,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0C684AA92E4251E300150868 /* Assets */,
 			);
 			name = IASKSwiftUI;
 			packageProductDependencies = (
@@ -114,7 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CF01A322E422BED00763DF7 /* Images.xcassets in Resources */,
-				0CF01A302E422AE100763DF7 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +268,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = ../InAppSettingsKitSampleApp/Assets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -293,6 +303,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = ../InAppSettingsKitSampleApp/Assets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

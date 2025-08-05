@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,6 @@
 		AAA468D8125CD9680057A662 /* CustomSubviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA468D6125CD9680057A662 /* CustomSubviewController.m */; };
 		AAA468D9125CD9680057A662 /* CustomSubviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAA468D7125CD9680057A662 /* CustomSubviewController.xib */; };
 		AAA53E8F15B057FD00C6558B /* 20-gear2Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA53E8E15B057FD00C6558B /* 20-gear2Highlighted.png */; };
-		AAA8D0C422C14BD700631015 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAA8D0C322C14BD700631015 /* Settings.bundle */; };
 		AAAB97DC246203DF00C34803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAAB97DE246203DF00C34803 /* Main.storyboard */; };
 		AAB8389B12846D110042FF80 /* CustomViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAB8389A12846D110042FF80 /* CustomViewCell.xib */; };
 		AAB838A012846D850042FF80 /* CustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB8389F12846D850042FF80 /* CustomViewCell.m */; };
@@ -116,6 +115,10 @@
 		FB81CA07155BC7C900CEF887 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		0C684AA32E42517C00150868 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -168,6 +171,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0C684AA32E42517C00150868 /* Assets */,
 				B4AF7EAD256311EE00332606 /* In App Settings Kit.entitlements */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				080E96DDFE201D6D7F000001 /* Application Delegate */,
@@ -320,6 +324,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				0C684AA32E42517C00150868 /* Assets */,
+			);
 			name = IASKSampleAppStaticLibrary;
 			packageProductDependencies = (
 				E42B9CB026F8F0BD00144EB1 /* InAppSettingsKit */,
@@ -401,7 +408,6 @@
 				AAA53E8F15B057FD00C6558B /* 20-gear2Highlighted.png in Resources */,
 				AA092DC915B73A0500081FBC /* settings_about.html in Resources */,
 				AAAB97DC246203DF00C34803 /* Main.storyboard in Resources */,
-				AAA8D0C422C14BD700631015 /* Settings.bundle in Resources */,
 				E42ADAEB1682057B00295D85 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
