@@ -22,6 +22,12 @@ let package = Package(
 			],
 			resources: [.copy("PrivacyInfo.xcprivacy")]
         ),
+        .target(
+            name: "InAppSettingsKitSwift",
+            dependencies: [
+                "InAppSettingsKit"
+            ]
+        ),
         .testTarget(
             name: "InAppSettingsKitTests",
             dependencies: [
