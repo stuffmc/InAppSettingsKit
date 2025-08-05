@@ -10,6 +10,10 @@ let package = Package(
             name: "InAppSettingsKit",
             targets: ["InAppSettingsKit"]
         ),
+        .library(
+            name: "InAppSettingsKitSwift",
+            targets: ["InAppSettingsKitSwift"]
+        )
     ],
     targets: [
         .target(

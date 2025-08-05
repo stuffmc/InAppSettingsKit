@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C684A942E42449200150868 /* InAppSettingsKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C684A932E42449200150868 /* InAppSettingsKitSwift */; };
 		0C8778D52E421A4A00BB9E68 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8778D32E421A4A00BB9E68 /* App.swift */; };
-		0CF01A2D2E4227C100763DF7 /* InAppSettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0CF01A2C2E4227C100763DF7 /* InAppSettingsKit */; };
 		0CF01A302E422AE100763DF7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CF01A2E2E4228E200763DF7 /* Settings.bundle */; };
 		0CF01A322E422BED00763DF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF01A312E422BED00763DF7 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CF01A2D2E4227C100763DF7 /* InAppSettingsKit in Frameworks */,
+				0C684A942E42449200150868 /* InAppSettingsKitSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +67,7 @@
 			);
 			name = IASKSwiftUI;
 			packageProductDependencies = (
-				0CF01A2C2E4227C100763DF7 /* InAppSettingsKit */,
+				0C684A932E42449200150868 /* InAppSettingsKitSwift */,
 			);
 			productName = InAppSettingsKitSwiftUISampleApp;
 			productReference = 0C8778D72E421AFE00BB9E68 /* IASKSwiftUI.app */;
@@ -342,9 +342,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0CF01A2C2E4227C100763DF7 /* InAppSettingsKit */ = {
+		0C684A932E42449200150868 /* InAppSettingsKitSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = InAppSettingsKit;
+			productName = InAppSettingsKitSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

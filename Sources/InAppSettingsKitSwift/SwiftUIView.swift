@@ -1,11 +1,14 @@
 import SwiftUI
 import InAppSettingsKit
 
-struct IASKView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> IASKAppSettingsViewController {
+public struct IASKView: UIViewControllerRepresentable {
+    public init() {
+    }
+    
+    public func makeUIViewController(context: Context) -> IASKAppSettingsViewController {
         .init()
     }
     
-    func updateUIViewController(_ uiViewController: IASKAppSettingsViewController, context: Context) {
+    public func updateUIViewController(_ uiViewController: IASKAppSettingsViewController, context: Context) {
     }
 }
