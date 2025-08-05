@@ -62,7 +62,8 @@ The source code is available on [github](http://github.com/futuretap/InAppSettin
 To install InAppSettingsKit using [Swift Package Manager](https://github.com/apple/swift-package-manager) you can follow the [tutorial published by Apple](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) using the URL for the InAppSettingsKit repo with the current version:
 
 1. In Xcode, select “File” → “Add Packages…”
-1. Enter `https://github.com/futuretap/InAppSettingsKit.git`
+2. Enter `https://github.com/futuretap/InAppSettingsKit.git`
+3. Choose `InAppSettingsKit` only if you don't use SwiftUI, only `InAppSettingsKitSwift` if you use it. The later include the original library (written in ObjC). You can totally write your own SwiftUI wrapper (and thus not need the `Swift` Library) for more advanced stuff, but we built it for your ease of integration.
 
 
 **Using CocoaPods**
