@@ -82,12 +82,12 @@ Add to your `Cartfile`:
 
 # Sample application
 
-InAppSettingsKit contains an Xcode sample application, that demonstrates all of it's extensive features. Both for a push and modal view controller.  
+InAppSettingsKit contains 2 Xcode sample applications. One original, in UIKit, that demonstrates all of it's extensive features, and another one in SwiftUI, more simple. Both do a push and modal view controller.  
 To run the sample application:
 
 1. From the project root folder, open `InAppSettingsKit.xcworkspace` in Xcode.
-2. Change the scheme to `Sample App` (Product > Scheme > Sample App).
-3. Select a destination, like an iPhone Simulator.
+2. Change the scheme to `Sample App` (Product > Scheme > Sample App), or `SwiftUI Sample App`.
+3. Select a destination, like an iPhone Simulator (or simply start the SwiftUIPreview in `App.swift`)
 4. To build and run the application, choose Product > Run, or click the Run button in the Xcode toolbar.
 
 
@@ -168,6 +168,20 @@ The [sample application](#sample-application) shows how to wire everything up.
 To customize the behavior, implement `IASKSettingsDelegate` and set the `delegate` property of `IASKAppSettingsViewController`. For advanced customization needs, subclassing of IASKAppSettingsViewController is supported.
 
 Depending on your project it might be needed to make some changes in the startup code of your app. Your app has to be able to reconfigure itself at runtime if the settings are changed by the user. This could be done in a `-reconfigure` method that is being called from `-applicationDidFinishLaunching` as well as in the delegate method `-settingsViewControllerDidEnd:` of `IASKAppSettingsViewController`.
+
+# SwiftUI
+
+We've created a straight forward `IASKView` that you can use if you `import InAppSettingsKitSwift` (which references `InAppSettingsKit` so you don't need both).
+
+The [sample application](#sample-application) shows how to wire everything up.
+
+**WARNING**
+
+For now, this is very limited so you might also want to do the `UIViewControllerRepresentable` job yourself. We are working on more advanced Scenarios you might need, but if it's not there yet, just look at how we did it.
+
+**SwiftUI Preview**
+
+For it to work, you'll need to have a version of a `Settings.bundle` in your `DEVELOPMENT_ASSET_PATHS`. We recommend you put the bundle in a Folder, either alone or with other files you might need in the SwiftUI preview. You might also have 2 different Bundles, one for Production / the Simulator, and one for Preview. 
 
 
 # Goodies
