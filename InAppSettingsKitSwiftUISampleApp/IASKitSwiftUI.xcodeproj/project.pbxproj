@@ -9,12 +9,19 @@
 /* Begin PBXBuildFile section */
 		0C684A942E42449200150868 /* InAppSettingsKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C684A932E42449200150868 /* InAppSettingsKitSwift */; };
 		0C8778D52E421A4A00BB9E68 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8778D32E421A4A00BB9E68 /* App.swift */; };
+		0CAB2BB12E433D2F00E54F3E /* IASKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CAB2BAF2E433D2F00E54F3E /* IASKLocalizable.strings */; };
+		0CAB2BB52E433DD000E54F3E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0CAB2BB42E433DD000E54F3E /* Localizable.xcstrings */; };
 		0CF01A322E422BED00763DF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF01A312E422BED00763DF7 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C684AAF2E433C0100150868 /* IASKSwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IASKSwiftUI.entitlements; sourceTree = "<group>"; };
 		0C8778D32E421A4A00BB9E68 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0C8778D72E421AFE00BB9E68 /* IASKSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IASKSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CAB2BB02E433D2F00E54F3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = ../Sources/InAppSettingsKit/Resources/Base.lproj/IASKLocalizable.strings; sourceTree = "<group>"; };
+		0CAB2BB22E433D3700E54F3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../Sources/InAppSettingsKit/Resources/en.lproj/IASKLocalizable.strings; sourceTree = "<group>"; };
+		0CAB2BB32E433D3900E54F3E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = ../Sources/InAppSettingsKit/Resources/fr.lproj/IASKLocalizable.strings; sourceTree = "<group>"; };
+		0CAB2BB42E433DD000E54F3E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		0CF01A312E422BED00763DF7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../InAppSettingsKitSampleApp/Images.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -42,6 +49,9 @@
 		0C8778BA2E42197D00BB9E68 = {
 			isa = PBXGroup;
 			children = (
+				0CAB2BB42E433DD000E54F3E /* Localizable.xcstrings */,
+				0CAB2BAF2E433D2F00E54F3E /* IASKLocalizable.strings */,
+				0C684AAF2E433C0100150868 /* IASKSwiftUI.entitlements */,
 				0CF01A312E422BED00763DF7 /* Images.xcassets */,
 				0C684AA92E4251E300150868 /* Assets */,
 				0C8778D32E421A4A00BB9E68 /* App.swift */,
@@ -105,6 +115,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 0C8778BA2E42197D00BB9E68;
 			minimizedProjectReferenceProxies = 1;
@@ -123,6 +134,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CAB2BB12E433D2F00E54F3E /* IASKLocalizable.strings in Resources */,
+				0CAB2BB52E433DD000E54F3E /* Localizable.xcstrings in Resources */,
 				0CF01A322E422BED00763DF7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,12 +153,26 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		0CAB2BAF2E433D2F00E54F3E /* IASKLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CAB2BB02E433D2F00E54F3E /* Base */,
+				0CAB2BB22E433D3700E54F3E /* en */,
+				0CAB2BB32E433D3900E54F3E /* fr */,
+			);
+			name = IASKLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		0C8778CC2E42197E00BB9E68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -200,6 +227,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -209,6 +237,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -256,6 +285,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -266,11 +296,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = IASKSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = ../InAppSettingsKitSampleApp/Assets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -301,11 +333,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = IASKSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = ../InAppSettingsKitSampleApp/Assets;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

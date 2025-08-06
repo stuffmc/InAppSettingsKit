@@ -19,10 +19,10 @@ struct Tabs: View {
             Tab("Feature", systemImage: "star") {
                 NavigationStack {
                     VStack(spacing: 30) {
-                        NavigationLink("Show Settings (Push)") {
+                        NavigationLink(.showSettingsPush) {
                             IASKView()
                         }
-                        Button("Show Settings (Modal)") {
+                        Button(.showSettingsModal) {
                             showingModal.toggle()
                         }
                         .sheet(isPresented: $showingModal) {
@@ -32,10 +32,10 @@ struct Tabs: View {
                         }
                     }
                     .bold()
-                    .navigationTitle(Text("SwiftUI IASK Sample"))
+                    .navigationTitle(Text(.swiftUIIaskSample))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
-                        Button("Settings") {
+                        Button(.settings) {
                             showingSheet.toggle()
                         }
                         .sheet(isPresented: $showingSheet) {
