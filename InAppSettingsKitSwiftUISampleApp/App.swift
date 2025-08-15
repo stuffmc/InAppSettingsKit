@@ -1,5 +1,5 @@
 import SwiftUI
-import InAppSettingsKitSwift
+import InAppSettingsKitSwiftUI
 
 @main
 struct IASKSwiftUISample: App {
@@ -25,11 +25,7 @@ struct Tabs: View {
                         Button(.showSettingsModal) {
                             showingModal.toggle()
                         }
-                        .sheet(isPresented: $showingModal) {
-                            NavigationStack {
-                                IASKView()
-                            }
-                        }
+                        .sheet(isPresented: $showingModal) { stack }
                     }
                     .bold()
                     .navigationTitle(Text(.swiftUIIaskSample))
@@ -38,15 +34,19 @@ struct Tabs: View {
                         Button(.settings) {
                             showingSheet.toggle()
                         }
-                        .sheet(isPresented: $showingSheet) {
-                            IASKView()
-                        }
+                        .sheet(isPresented: $showingSheet) { stack }
                     }
                 }
             }
             Tab("Settings", systemImage: "gearshape.2.fill") {
                 IASKView()
             }
+        }
+    }
+    
+    var stack: some View {
+        NavigationStack {
+            IASKView()
         }
     }
 }

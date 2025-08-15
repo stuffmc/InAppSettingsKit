@@ -11,8 +11,8 @@ let package = Package(
             targets: ["InAppSettingsKit"]
         ),
         .library(
-            name: "InAppSettingsKitSwift",
-            targets: ["InAppSettingsKitSwift"]
+            name: "InAppSettingsKitSwiftUI",
+            targets: ["InAppSettingsKitSwiftUI"]
         )
     ],
     targets: [
@@ -27,7 +27,7 @@ let package = Package(
 			resources: [.copy("PrivacyInfo.xcprivacy")]
         ),
         .target(
-            name: "InAppSettingsKitSwift",
+            name: "InAppSettingsKitSwiftUI",
             dependencies: [
                 "InAppSettingsKit"
             ]
