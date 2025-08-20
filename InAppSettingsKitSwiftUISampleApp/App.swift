@@ -1,4 +1,5 @@
 import SwiftUI
+import InAppSettingsKit
 import InAppSettingsKitSwiftUI
 
 @main
@@ -13,6 +14,7 @@ struct IASKSwiftUISample: App {
 struct Tabs: View {
     @State private var showingSheet = false
     @State private var showingModal = false
+    private let delegate = SettingsDelegate()
 
     var body: some View {
         TabView {
@@ -21,11 +23,12 @@ struct Tabs: View {
                     VStack(spacing: 30) {
                         NavigationLink(.showSettingsPush) {
                             IASKView()
+                                .navigationTitle(.settings)
                         }
                         Button(.showSettingsModal) {
                             showingModal.toggle()
                         }
-                        .sheet(isPresented: $showingModal) { stack }
+                        .sheet(isPresented: $showingModal) { iask() }
                     }
                     .bold()
                     .navigationTitle(Text(.swiftUIIaskSample))
@@ -34,21 +37,81 @@ struct Tabs: View {
                         Button(.settings) {
                             showingSheet.toggle()
                         }
-                        .sheet(isPresented: $showingSheet) { stack }
+                        .sheet(isPresented: $showingSheet) { iask() }
                     }
                 }
             }
             Tab("Settings", systemImage: "gearshape.2.fill") {
-                IASKView()
+                iask(showDoneButton: false)
+                    .edgesIgnoringSafeArea(.top)
             }
         }
     }
+
+    func iask(showDoneButton: Bool = true) -> some View {
+        IASKView(showDoneButton: showDoneButton, delegate: delegate)
+            .navigationTitle(.settings)
+    }
+}
+
+private class SettingsDelegate: NSObject, IASKSettingsDelegate {
+    func settingsViewControllerDidEnd(_ settingsViewController: IASKAppSettingsViewController) {
+        settingsViewController.dismiss(animated: true)
+    }
     
-    var stack: some View {
-        NavigationStack {
-            IASKView()
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, heightForHeaderInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
+        switch specifier.key {
+        case "IASKLogo":
+            return UIImage(named: "Icon.png")?.size.height ?? 0 + 25
+        case "IASKCustomHeaderStyle":
+            return 55
+        default:
+            return 0
         }
     }
+    
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, heightForFooterInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
+        switch specifier.key {
+        case "IASKLogo":
+            return UIImage(named: "Icon.png")?.size.height ?? 0 + 25
+        default:
+            return 0
+        }
+    }
+    
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
+        switch specifier.key {
+        case "IASKLogo":
+            let imageView = UIImageView(image: UIImage(named: "Icon.png"))
+            imageView.contentMode = .center
+            return imageView
+        default:
+            return nil
+        }
+    }
+    
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
+        switch specifier.key {
+        case "IASKLogo":
+            let imageView = UIImageView(image: UIImage(named: "Icon.png"))
+            imageView.contentMode = .center
+            return imageView
+        case "IASKCustomHeaderStyle":
+            let label = UILabel()
+            label.backgroundColor = .clear
+            label.textAlignment = .center
+            label.textColor = .red
+            label.shadowColor = .white
+            label.shadowOffset = CGSize(width: 0, height: 1)
+            label.numberOfLines = 0
+            label.font = .boldSystemFont(ofSize: 16)
+            label.text = settingsViewController.settingsReader?.title(forSection: section)
+            return label
+        default:
+            return nil
+        }
+    }
+
 }
 
 #Preview {

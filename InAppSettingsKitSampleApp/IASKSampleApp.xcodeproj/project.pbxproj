@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
 		575C01E8127CE845009FBEA2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575C01E7127CE845009FBEA2 /* MessageUI.framework */; };
-		6A1F35EE11490727003E6295 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F35ED11490727003E6295 /* Icon.png */; };
 		6A9BBF591148F1DA003D97FA /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9BBF581148F1DA003D97FA /* 20-gear2.png */; };
 		AA092DC915B73A0500081FBC /* settings_about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA092DC415B73A0500081FBC /* settings_about.html */; };
 		AA3966952464B88D00820E0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3966942464B88D00820E0C /* MainViewController.swift */; };
@@ -45,7 +44,6 @@
 		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		575C01E7127CE845009FBEA2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		6A1F35ED11490727003E6295 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6A9BBF581148F1DA003D97FA /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* InAppSettingsKitSampleApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "InAppSettingsKitSampleApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		AA1552141F79054700F2CEA1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ../Sources/InAppSettingsKit/Resources/ja.lproj/IASKLocalizable.strings; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				E459FF8622C4B919002DBB60 /* Images.xcassets */,
 				E42ADAEF1682072200295D85 /* LaunchImages */,
 				FB81CA03155BC7C900CEF887 /* Images */,
-				6A1F35ED11490727003E6295 /* Icon.png */,
 				6A9BBF581148F1DA003D97FA /* 20-gear2.png */,
 				AAA53E8E15B057FD00C6558B /* 20-gear2Highlighted.png */,
 				8D1107310486CEB800E47090 /* InAppSettingsKitSampleApp-Info.plist */,
@@ -395,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A9BBF591148F1DA003D97FA /* 20-gear2.png in Resources */,
-				6A1F35EE11490727003E6295 /* Icon.png in Resources */,
 				AAA468D9125CD9680057A662 /* CustomSubviewController.xib in Resources */,
 				AAF478871A239A1A000A0A74 /* Launch.xib in Resources */,
 				AAB8389B12846D110042FF80 /* CustomViewCell.xib in Resources */,
