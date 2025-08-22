@@ -14,7 +14,8 @@ struct IASKSwiftUISample: App {
 struct Tabs: View {
     @State private var showingSheet = false
     @State private var showingModal = false
-    private let delegate = SettingsDelegate()
+    private let settingsDelegate = SettingsDelegate()
+    @State private var appDelegate: AppDelegate?
 
     var body: some View {
         TabView {
@@ -22,8 +23,7 @@ struct Tabs: View {
                 NavigationStack {
                     VStack(spacing: 30) {
                         NavigationLink(.showSettingsPush) {
-                            IASKView()
-                                .navigationTitle(.settings)
+                            iask(showDoneButton: nil)
                         }
                         Button(.showSettingsModal) {
                             showingModal.toggle()
@@ -48,9 +48,39 @@ struct Tabs: View {
         }
     }
 
-    func iask(showDoneButton: Bool = true) -> some View {
-        IASKView(showDoneButton: showDoneButton, delegate: delegate)
+    private func iask(showDoneButton: Bool? = true) -> some View {
+        let iaskView = IASKView(showDoneButton: showDoneButton, delegate: settingsDelegate)
+        return iaskView
             .navigationTitle(.settings)
+            .onAppear {
+                appDelegate = AppDelegate(iaskView.viewController)
+            }
+    }
+}
+
+class AppDelegate: NSObject {
+    private var viewController: IASKAppSettingsViewController
+
+    public init(_ viewController: IASKAppSettingsViewController) {
+        self.viewController = viewController
+        super.init()
+        updateHiddenKeys()
+        NotificationCenter.default.addObserver(self, selector: #selector(settingDidChange(notification:)), name: Notification.Name.IASKSettingChanged, object: nil)
+    }
+
+    @objc func settingDidChange(notification: Notification?) {
+        updateHiddenKeys()
+    }
+
+    func updateHiddenKeys() {
+        var hiddenKeys = Set<String>()
+        if UserDefaults.standard.bool(forKey: "AutoConnect") {
+            hiddenKeys.formUnion(["AutoConnectLogin", "AutoConnectPassword", "loginOptions"])
+        }
+        if !UserDefaults.standard.bool(forKey: "ShowAccounts") {
+            hiddenKeys.insert("accounts")
+        }
+        viewController.setHiddenKeys(hiddenKeys, animated: true)
     }
 }
 

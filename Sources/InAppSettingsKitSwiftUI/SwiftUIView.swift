@@ -3,8 +3,8 @@ import InAppSettingsKit
 
 public struct IASKView: UIViewControllerRepresentable {
     private var showDoneButton: Bool?
-    private let viewController = IASKAppSettingsViewController()
-    
+    public let viewController = IASKAppSettingsViewController()
+
     public init(showDoneButton: Bool? = nil, delegate: IASKSettingsDelegate? = nil) {
         self.showDoneButton = showDoneButton
         viewController.delegate = delegate
