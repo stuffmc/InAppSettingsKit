@@ -241,6 +241,19 @@ extension MainViewController: IASKSettingsDelegate {
 		}
 		return true
 	}
+
+	func settingsViewController(_ settingsViewController: IASKAppSettingsViewController, buttonTappedFor specifier: IASKSpecifier) {
+		if specifier.key == "ButtonDemoAction1" {
+			let alert = UIAlertController(title: "Demo Action 1 called", message: nil, preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "InAppSettingsKit"), style: .cancel, handler: nil))
+			settingsViewController.present(alert, animated: true, completion: nil)
+		} else if specifier.key == "ButtonDemoAction2" {
+			let defaults = UserDefaults.standard
+			let oldTitle = defaults.string(forKey: specifier.key ?? "") ?? ""
+			let newTitle = (oldTitle == "Logout") ? "Login" : "Logout"
+			defaults.set(newTitle, forKey: specifier.key ?? "")
+		}
+	}
 }
 
 extension MainViewController: UITextViewDelegate {
