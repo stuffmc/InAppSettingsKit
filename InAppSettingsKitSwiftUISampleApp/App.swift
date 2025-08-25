@@ -61,7 +61,7 @@ struct Tabs: View {
 class AppDelegate: NSObject {
     private var viewController: IASKAppSettingsViewController
 
-    public init(_ viewController: IASKAppSettingsViewController) {
+    init(_ viewController: IASKAppSettingsViewController) {
         self.viewController = viewController
         super.init()
         updateHiddenKeys()
