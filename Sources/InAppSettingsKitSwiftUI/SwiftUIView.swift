@@ -5,26 +5,26 @@ import InAppSettingsKit
 public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
     private var showDoneButton: Bool?
     public let viewController = IASKAppSettingsViewController()
-    private let delegate: SettingsDelegate<HeaderFooter>?
+    private var delegate: SettingsDelegate<HeaderFooter>?
 
     public init(
         showDoneButton: Bool? = nil,
-        delegate: IASKSettingsDelegate? = nil,
-        header: ((IASKSpecifier) -> HeaderFooter)? = nil,
-        footer: ((IASKSpecifier) -> HeaderFooter)? = nil,
-        buttonTapped: ((IASKSpecifier) -> Void)? = nil
+        buttonTapped: ((IASKSpecifier) -> Void)? = nil,
+        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() },
+        @ViewBuilder footer: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() }
     ) {
+        self.init(showDoneButton: showDoneButton)
+        delegate = SettingsDelegate(header: header, footer: footer, buttonTapped: buttonTapped)
+        viewController.delegate = delegate
+    }
+
+    public init(showDoneButton: Bool? = nil, delegate: IASKSettingsDelegate) {
+        self.init(showDoneButton: showDoneButton)
+        viewController.delegate = delegate
+    }
+
+    public init(showDoneButton: Bool? = nil) {
         self.showDoneButton = showDoneButton
-        if let delegate {
-            viewController.delegate = delegate
-            self.delegate = nil
-            if header != nil || footer != nil {
-                assertionFailure("When you specify a delegate, header, footer or button tapped closures will be ignored and need to be implemented via the delegate methods.")
-            }
-        } else {
-            self.delegate = SettingsDelegate(header: header, footer: footer, buttonTapped: buttonTapped)
-            viewController.delegate = self.delegate
-        }
         if let showDoneButton {
             viewController.showDoneButton = showDoneButton
         }
@@ -44,13 +44,17 @@ public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
 
 @available(iOS 13.0, *)
 class SettingsDelegate<HeaderFooter: View>: NSObject, IASKSettingsDelegate {
-    let viewForFooter: ((IASKSpecifier) -> HeaderFooter)?
-    let viewForHeader: ((IASKSpecifier) -> HeaderFooter)?
+    let viewForHeaderInSection: ((Int, IASKSpecifier) -> HeaderFooter)?
+    let viewForFooterInSection: ((Int, IASKSpecifier) -> HeaderFooter)?
     let buttonTapped: ((IASKSpecifier) -> Void)?
 
-    init(header: ((IASKSpecifier) -> HeaderFooter)?, footer: ((IASKSpecifier) -> HeaderFooter)?, buttonTapped: ((IASKSpecifier) -> Void)?) {
-        self.viewForFooter = footer
-        self.viewForHeader = header
+    init(
+        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() },
+        footer: ((Int, IASKSpecifier) -> HeaderFooter)?,
+        buttonTapped: ((IASKSpecifier) -> Void)?
+    ) {
+        self.viewForFooterInSection = footer
+        self.viewForHeaderInSection = header
         self.buttonTapped = buttonTapped
     }
 
@@ -71,12 +75,12 @@ class SettingsDelegate<HeaderFooter: View>: NSObject, IASKSettingsDelegate {
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
-        guard let header = viewForHeader?(specifier) else { return UIView() }
+        guard let header = viewForHeaderInSection?(section, specifier) else { return UIView() }
         return UIHostingController(rootView: header).view
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
-        guard let footer = viewForFooter?(specifier) else { return UIView() }
+        guard let footer = viewForFooterInSection?(section, specifier) else { return UIView() }
         return UIHostingController(rootView: footer).view
     }
 }
