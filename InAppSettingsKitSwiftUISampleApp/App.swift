@@ -52,12 +52,20 @@ struct Tabs: View {
 
     private func iask(showDoneButton: Bool? = true, delegate: Bool = true) -> some View {
         let iaskView = delegate ? IASKView(showDoneButton: showDoneButton, delegate: settingsDelegate)
-        : IASKView(showDoneButton: showDoneButton) { specifier in
-            button(for: specifier).font(.title)
-        } footer: { specifier in
-            button(for: specifier).font(.caption)
-        } buttonTapped: {
+        : IASKView(showDoneButton: showDoneButton) {
             print("Button tapped for \($0.key ?? "unknown specifier")")
+        } header: { section, specifier in
+            if section == 0 {
+                button(for: specifier, section: section).font(.title)
+            } else {
+                EmptyView()
+            }
+        } footer: { section, specifier in
+            if section != 1 {
+                button(for: specifier, section: section).font(.caption)
+            } else {
+                EmptyView()
+            }
         }
         return iaskView
             .navigationTitle(.settings)
@@ -66,8 +74,8 @@ struct Tabs: View {
             }
     }
 
-    private func button(for specifier: IASKSpecifier) -> some View {
-        Button(specifier.key ?? "") { print(specifier.key ?? "") }
+    private func button(for specifier: IASKSpecifier, section: Int) -> Button<Text> {
+        Button("\(section): \(specifier.key ?? "")") { print(specifier.key ?? "") }
     }
 }
 
