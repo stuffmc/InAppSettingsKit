@@ -25,10 +25,10 @@ struct Tabs: View {
                         NavigationLink(.showSettingsPush) {
                             iask(showDoneButton: nil)
                         }
-                        Button(.showSettingsModal) {
+                        Button(.showSettingsModalWithHeaderAndFooter) {
                             showingModal.toggle()
                         }
-                        .sheet(isPresented: $showingModal) { iask() }
+                        .sheet(isPresented: $showingModal) { iask(delegate: false) }
                     }
                     .bold()
                     .navigationTitle(Text(.swiftUIIaskSample))
@@ -48,8 +48,13 @@ struct Tabs: View {
         }
     }
 
-    private func iask(showDoneButton: Bool? = true) -> some View {
-        let iaskView = IASKView(showDoneButton: showDoneButton, delegate: settingsDelegate)
+    private func iask(showDoneButton: Bool? = true, delegate: Bool = true) -> some View {
+        let iaskView = delegate ? IASKView(showDoneButton: showDoneButton, delegate: settingsDelegate)
+        : IASKView(showDoneButton: showDoneButton) { specifier in
+            Button(specifier.key ?? "") { print(specifier.key ?? "") }.font(.title)
+        } footer: { specifier in
+            Button(specifier.key ?? "") { print(specifier.key ?? "") }.font(.caption)
+        }
         return iaskView
             .navigationTitle(.settings)
             .onAppear {

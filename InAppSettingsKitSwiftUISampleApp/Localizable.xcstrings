@@ -25,14 +25,14 @@
         }
       }
     },
-    "Show Settings (Modal)" : {
+    "Show Settings (Modal) with Header and Footer" : {
       "comment" : "The button on the main screen that opens the settings as a modal screen.",
       "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afficher les paramètres (Modal)"
+            "value" : "Afficher les paramètres (Modal) avec en-tête et pied de page"
           }
         }
       }
