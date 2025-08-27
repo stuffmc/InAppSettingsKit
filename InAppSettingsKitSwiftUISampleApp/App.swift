@@ -112,27 +112,16 @@ private class SettingsDelegate: NSObject, IASKSettingsDelegate {
             return 0
         }
     }
-    
-    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, heightForFooterInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
+
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, titleForHeaderInSection section: Int, specifier: IASKSpecifier) -> String? {
         switch specifier.key {
-        case "IASKLogo":
-            return UIImage(named: "Icon.png")?.size.height ?? 0 + 25
-        default:
-            return 0
-        }
-    }
-    
-    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
-        switch specifier.key {
-        case "IASKLogo":
-            let imageView = UIImageView(image: UIImage(named: "Icon.png"))
-            imageView.contentMode = .center
-            return imageView
+        case "CUSTOM_HEADER_FOOTER":
+            return "Custom header title"
         default:
             return nil
         }
     }
-    
+
     func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
         switch specifier.key {
         case "IASKLogo":
@@ -150,6 +139,35 @@ private class SettingsDelegate: NSObject, IASKSettingsDelegate {
             label.font = .boldSystemFont(ofSize: 16)
             label.text = settingsViewController.settingsReader?.title(forSection: section)
             return label
+        default:
+            return nil
+        }
+    }
+
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, heightForFooterInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
+        switch specifier.key {
+        case "IASKLogo":
+            return UIImage(named: "Icon.png")?.size.height ?? 0 + 25
+        default:
+            return 0
+        }
+    }
+
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, titleForFooterInSection section: Int, specifier: IASKSpecifier) -> String? {
+        switch specifier.key {
+        case "CUSTOM_HEADER_FOOTER":
+            return "Custom footer title"
+        default:
+            return nil
+        }
+    }
+
+    func settingsViewController(_ settingsViewController: UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
+        switch specifier.key {
+        case "IASKLogo":
+            let imageView = UIImageView(image: UIImage(named: "Icon.png"))
+            imageView.contentMode = .center
+            return imageView
         default:
             return nil
         }
