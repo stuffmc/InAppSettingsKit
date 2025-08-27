@@ -172,9 +172,19 @@ Depending on your project it might be needed to make some changes in the startup
 
 # SwiftUI
 
-We've created a straight forward `IASKView` that you can use if you `import InAppSettingsKitSwiftUI` (which references `InAppSettingsKit` so you don't need both).
+We've created a straight forward `IASKView` that you can use if you `import InAppSettingsKitSwiftUI` (which references `InAppSettingsKit` so you don't need both in some cases, but to avoid the hassle of figuring out when you need it or not, just add both).
 
-The [sample application](#sample-application) shows how to wire everything up.
+The [sample application](#sample-application) shows 2 different ways to use (or not) a specific `IASKSettingsDelegate`. For now, if you only need:
+
+- `buttonTapped`
+- `header`
+- `footer`
+
+You're good to go ignoring it and just use the SwiftUI closures and pass a SwiftUI View for Header/Footer and react to the tapped button. The list of SwiftUI helpers will grow over time.
+
+If you need more, e.g. showing the Icon like in the Sample App, you'll need to implement all of those yourself, including `settingsViewController.dismiss(animated: true)` like in the sample App, because the SwiftUI NavigationStack isn't passed to UIKit.
+
+Speaking of which, if the `showDoneButton` is shown, we'll automatically create a `UINavigationController` for you. If not, you either don't need one, or you'll have to create it yourself. For the most part, just tell us you're embedded in a Stack by passing `true` for the button. We can't really tell, from UIKit, that you are.
 
 **WARNING**
 
