@@ -11,17 +11,18 @@ public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
         showDoneButton: Bool? = nil,
         delegate: IASKSettingsDelegate? = nil,
         header: ((IASKSpecifier) -> HeaderFooter)? = nil,
-        footer: ((IASKSpecifier) -> HeaderFooter)? = nil
+        footer: ((IASKSpecifier) -> HeaderFooter)? = nil,
+        buttonTapped: ((IASKSpecifier) -> Void)? = nil
     ) {
         self.showDoneButton = showDoneButton
         if let delegate {
             viewController.delegate = delegate
             self.delegate = nil
             if header != nil || footer != nil {
-                assertionFailure("When you specify a delegate, header or footer will be ignored and need to be implemented via the delegate methods.")
+                assertionFailure("When you specify a delegate, header, footer or button tapped closures will be ignored and need to be implemented via the delegate methods.")
             }
         } else {
-            self.delegate = SettingsDelegate(header: header, footer: footer)
+            self.delegate = SettingsDelegate(header: header, footer: footer, buttonTapped: buttonTapped)
             viewController.delegate = self.delegate
         }
         if let showDoneButton {
@@ -45,14 +46,20 @@ public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
 class SettingsDelegate<HeaderFooter: View>: NSObject, IASKSettingsDelegate {
     let viewForFooter: ((IASKSpecifier) -> HeaderFooter)?
     let viewForHeader: ((IASKSpecifier) -> HeaderFooter)?
+    let buttonTapped: ((IASKSpecifier) -> Void)?
 
-    init(header: ((IASKSpecifier) -> HeaderFooter)?, footer: ((IASKSpecifier) -> HeaderFooter)?) {
+    init(header: ((IASKSpecifier) -> HeaderFooter)?, footer: ((IASKSpecifier) -> HeaderFooter)?, buttonTapped: ((IASKSpecifier) -> Void)?) {
         self.viewForFooter = footer
         self.viewForHeader = header
+        self.buttonTapped = buttonTapped
     }
 
     func settingsViewControllerDidEnd(_ settingsViewController: IASKAppSettingsViewController) {
         settingsViewController.dismiss(animated: true)
+    }
+
+    func settingsViewController(_: IASKAppSettingsViewController, buttonTappedFor specifier: IASKSpecifier) {
+        buttonTapped?(specifier)
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, heightForHeaderInSection section: Int, specifier: IASKSpecifier) -> CGFloat {

@@ -28,6 +28,8 @@ struct Tabs: View {
                         Button(.showSettingsModalWithHeaderAndFooter) {
                             showingModal.toggle()
                         }
+                        .buttonStyle(.borderedProminent)
+                        .padding()
                         .sheet(isPresented: $showingModal) { iask(delegate: false) }
                     }
                     .bold()
@@ -51,15 +53,21 @@ struct Tabs: View {
     private func iask(showDoneButton: Bool? = true, delegate: Bool = true) -> some View {
         let iaskView = delegate ? IASKView(showDoneButton: showDoneButton, delegate: settingsDelegate)
         : IASKView(showDoneButton: showDoneButton) { specifier in
-            Button(specifier.key ?? "") { print(specifier.key ?? "") }.font(.title)
+            button(for: specifier).font(.title)
         } footer: { specifier in
-            Button(specifier.key ?? "") { print(specifier.key ?? "") }.font(.caption)
+            button(for: specifier).font(.caption)
+        } buttonTapped: {
+            print("Button tapped for \($0.key ?? "unknown specifier")")
         }
         return iaskView
             .navigationTitle(.settings)
             .onAppear {
                 appDelegate = AppDelegate(iaskView.viewController)
             }
+    }
+
+    private func button(for specifier: IASKSpecifier) -> some View {
+        Button(specifier.key ?? "") { print(specifier.key ?? "") }
     }
 }
 
@@ -147,6 +155,9 @@ private class SettingsDelegate: NSObject, IASKSettingsDelegate {
         }
     }
 
+    func settingsViewController(_: IASKAppSettingsViewController, buttonTappedFor specifier: IASKSpecifier) {
+        print("Button Tapped with Delegate for \(specifier.key ?? "unknown specifier")")
+    }
 }
 
 #Preview {
