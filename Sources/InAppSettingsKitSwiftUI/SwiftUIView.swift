@@ -2,16 +2,16 @@ import SwiftUI
 import InAppSettingsKit
 
 @available(iOS 13.0, *)
-public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
+public struct IASKView: UIViewControllerRepresentable {
     private var showDoneButton: Bool?
     public let viewController = IASKAppSettingsViewController()
-    private var delegate: SettingsDelegate<HeaderFooter>?
+    private var delegate: SettingsDelegate?
 
     public init(
         showDoneButton: Bool? = nil,
         buttonTapped: ((IASKSpecifier) -> Void)? = nil,
-        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() },
-        @ViewBuilder footer: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() }
+        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> any View = { _, _ in EmptyView() },
+        @ViewBuilder footer: @escaping (Int, IASKSpecifier) -> any View = { _, _ in EmptyView() }
     ) {
         self.init(showDoneButton: showDoneButton)
         delegate = SettingsDelegate(header: header, footer: footer, buttonTapped: buttonTapped)
@@ -43,14 +43,14 @@ public struct IASKView<HeaderFooter: View>: UIViewControllerRepresentable {
 }
 
 @available(iOS 13.0, *)
-class SettingsDelegate<HeaderFooter: View>: NSObject, IASKSettingsDelegate {
-    let viewForHeaderInSection: ((Int, IASKSpecifier) -> HeaderFooter)?
-    let viewForFooterInSection: ((Int, IASKSpecifier) -> HeaderFooter)?
+class SettingsDelegate: NSObject, IASKSettingsDelegate {
+    let viewForHeaderInSection: ((Int, IASKSpecifier) -> any View)?
+    let viewForFooterInSection: ((Int, IASKSpecifier) -> any View)?
     let buttonTapped: ((IASKSpecifier) -> Void)?
 
     init(
-        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> HeaderFooter = { _, _ in EmptyView() },
-        footer: ((Int, IASKSpecifier) -> HeaderFooter)?,
+        @ViewBuilder header: @escaping (Int, IASKSpecifier) -> any View = { _, _ in EmptyView() },
+        @ViewBuilder footer: @escaping (Int, IASKSpecifier) -> any View = { _, _ in EmptyView() },
         buttonTapped: ((IASKSpecifier) -> Void)?
     ) {
         self.viewForFooterInSection = footer
@@ -76,11 +76,13 @@ class SettingsDelegate<HeaderFooter: View>: NSObject, IASKSettingsDelegate {
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
         guard let header = viewForHeaderInSection?(section, specifier) else { return UIView() }
-        return UIHostingController(rootView: header).view
+        if header is EmptyView { return nil }
+        return UIHostingController(rootView: AnyView(header)).view
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
         guard let footer = viewForFooterInSection?(section, specifier) else { return UIView() }
-        return UIHostingController(rootView: footer).view
+        if footer is EmptyView { return nil }
+        return UIHostingController(rootView: AnyView(footer)).view
     }
 }

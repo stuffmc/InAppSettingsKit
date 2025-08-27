@@ -57,14 +57,10 @@ struct Tabs: View {
         } header: { section, specifier in
             if section == 0 {
                 button(for: specifier, section: section).font(.title)
-            } else {
-                EmptyView()
             }
         } footer: { section, specifier in
             if section != 1 {
                 button(for: specifier, section: section).font(.caption)
-            } else {
-                EmptyView()
             }
         }
         return iaskView
@@ -75,7 +71,11 @@ struct Tabs: View {
     }
 
     private func button(for specifier: IASKSpecifier, section: Int) -> Button<Text> {
-        Button("\(section): \(specifier.key ?? "")") { print(specifier.key ?? "") }
+        var key = specifier.key ?? ""
+        if let title = specifier.title, !title.isEmpty {
+            key = title
+        }
+        return Button("\(section): \(key)") { print(specifier.key ?? "") }
     }
 }
 
