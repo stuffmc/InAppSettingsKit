@@ -75,14 +75,19 @@ class SettingsDelegate: NSObject, IASKSettingsDelegate {
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
-        guard let header = viewForHeaderInSection?(section, specifier) else { return UIView() }
-        if header is EmptyView { return nil }
-        return UIHostingController(rootView: AnyView(header)).view
+        viewForHeaderInSection?(section, specifier).ui
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForFooterInSection section: Int, specifier: IASKSpecifier) -> UIView? {
-        guard let footer = viewForFooterInSection?(section, specifier) else { return UIView() }
-        if footer is EmptyView { return nil }
-        return UIHostingController(rootView: AnyView(footer)).view
+        viewForFooterInSection?(section, specifier).ui
+    }
+}
+
+@available(iOS 13.0, *)
+extension View {
+    var ui: UIView? {
+        let view = UIHostingController(rootView: self).view
+        view?.backgroundColor = .clear
+        return view
     }
 }
