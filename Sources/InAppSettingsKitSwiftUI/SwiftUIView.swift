@@ -5,7 +5,7 @@ import InAppSettingsKit
 public struct IASKView: UIViewControllerRepresentable {
     private var showDoneButton: Bool?
     public let viewController = IASKAppSettingsViewController()
-    private var delegate: SettingsDelegate?
+    private var delegate: IASKSettingsDelegate?
 
     public init(
         showDoneButton: Bool? = nil,
@@ -15,12 +15,11 @@ public struct IASKView: UIViewControllerRepresentable {
     ) {
         self.init(showDoneButton: showDoneButton)
         delegate = SettingsDelegate(header: header, footer: footer, buttonTapped: buttonTapped)
-        viewController.delegate = delegate
     }
 
     public init(showDoneButton: Bool? = nil, delegate: IASKSettingsDelegate) {
         self.init(showDoneButton: showDoneButton)
-        viewController.delegate = delegate
+        self.delegate = delegate
     }
 
     public init(showDoneButton: Bool? = nil) {
@@ -31,6 +30,7 @@ public struct IASKView: UIViewControllerRepresentable {
     }
 
     public func makeUIViewController(context: Context) -> UIViewController {
+        viewController.delegate = delegate
         return if showDoneButton == nil {
             viewController
         } else {
