@@ -70,12 +70,12 @@ struct Tabs: View {
             }
     }
 
-    private func button(for specifier: IASKSpecifier, section: Int) -> Button<Text> {
+    private func button(for specifier: IASKSpecifier, section: Int) -> some View {
         var key = specifier.key ?? ""
         if let title = specifier.title, !title.isEmpty {
             key = title
         }
-        return Button("\(section): \(key)") { print(specifier.key ?? "") }
+        return Button("\(section): \(key)") { print(specifier.key ?? "") }.padding()
     }
 }
 

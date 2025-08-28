@@ -67,11 +67,11 @@ class SettingsDelegate: NSObject, IASKSettingsDelegate {
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, heightForHeaderInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
-        settingsViewController.tableView.rowHeight
+        viewForHeaderInSection?(section, specifier).ui?.height(for: settingsViewController.tableView.bounds.width) ?? 0
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, heightForFooterInSection section: Int, specifier: IASKSpecifier) -> CGFloat {
-        settingsViewController.tableView.rowHeight
+        viewForFooterInSection?(section, specifier).ui?.height(for: settingsViewController.tableView.bounds.width) ?? 0
     }
 
     func settingsViewController(_ settingsViewController: any UITableViewController & IASKViewController, viewForHeaderInSection section: Int, specifier: IASKSpecifier) -> UIView? {
@@ -89,5 +89,15 @@ extension View {
         let view = UIHostingController(rootView: self).view
         view?.backgroundColor = .clear
         return view
+    }
+}
+
+extension UIView {
+    func height(for width: CGFloat) -> CGFloat {
+        systemLayoutSizeFitting(
+            CGSize(width: width, height: 0),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .fittingSizeLevel
+        ).height
     }
 }
